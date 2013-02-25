@@ -1,13 +1,8 @@
-<?php   // partie Contrôleur du blog
+<?php
 
-require 'modele.php';
+require 'Controleur/ControleurFrontal.php';
 
-try {
-    $billets = getBillets();        // Utilisation des services du modèle
-    require 'listeBillets.php';     // Génération de la vue associée
-}
-catch (Exception $e) {
-    $msgErreur = $e->getMessage();  // Création du message d'erreur
-    require 'erreur.php';           // Génération de la vue d'erreur
-}
+$ctrl = new ControleurFrontal();
+$ctrl->routerRequete();
+
 

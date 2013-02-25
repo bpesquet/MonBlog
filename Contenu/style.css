@@ -58,7 +58,7 @@ h1 {
     margin-bottom : 0px;
 }
 
-.titreBillet a {
+.titreBillet a, #titreBlog a {
     color: white;
     text-decoration: none;  /* Désactive le soulignement des liens vers les billets */
 }
@@ -69,4 +69,8 @@ h1 {
 
 #titreReponses {
     font-size : 100%;
+}
+
+#txt_commentaire {
+    width: 100%;
 }
