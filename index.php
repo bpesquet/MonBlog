@@ -20,6 +20,10 @@
                     </ul>
                 </section>
                 <section>
+                    <h1>Commentaires récents</h1>
+                    <!-- Enrichi plus tard -->
+                </section>
+                <section>
                     <h1>Administration</h1>
                     <ul>
                         <li><a href="todo">Ecrire un billet</a></li>
@@ -28,11 +32,10 @@
             </nav>
             <div id="contenu">
                 <?php
-                $bdd = new PDO('mysql:host=localhost;dbname=monblog', 'root', '');
-                $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $bdd->query('set names utf8');
-                $billets = $bdd->query('select * from T_BILLET order by BIL_ID desc');
-                foreach ($billets as $billet) {
+                $bdd = new PDO('mysql:host=localhost;dbname=monblog;charset=utf8', 'root', '');
+                $requeteBillets = "select * from T_BILLET order by BIL_ID desc";
+                $stmtBillets = $bdd->query($requeteBillets);
+                foreach ($stmtBillets as $billet) {
                     ?>
                     <article>
                         <header>
@@ -41,15 +44,15 @@
                         </header>
                         <p><?= $billet['BIL_CONTENU'] ?></p>
                         <?php
-                        $commentaires = $bdd->query('select COUNT(*) from T_COMMENTAIRE' .
-                                ' where BIL_ID = ' . $billet['BIL_ID']);
-                        $nbComm = $commentaires->fetchColumn();
+                        $requeteCommentaires = 'select COUNT(*) from T_COMMENTAIRE' .
+                                ' where BIL_ID = ' . $billet['BIL_ID'];
+                        $stmtCommentaires = $bdd->query($requeteCommentaires);
+                        $nbComm = $stmtCommentaires->fetchColumn();
                         echo '<footer class="commentaire">' . $nbComm . ' commentaire(s)</footer>';
                         ?>
                     </article>
                     <hr />
-                    <?php
-                }
+                <?php }
                 ?>
             </div> <!-- #contenu -->
             <footer id="piedBlog">
