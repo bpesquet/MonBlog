@@ -5,34 +5,27 @@
  *
  * @author pesquet
  */
-abstract class Modele
-{
+abstract class Modele {
 
     private $bdd;
 
-    private function getBdd()
-    {
+    // Exécute une requête SQL de lecture dans la base
+    protected function executerLecture($sql, $accederPremierResultat = false) {
+        $stmtResultats = $this->getBdd()->query($sql);
+        if ($accederPremierResultat == true)
+            return $stmtResultats->fetch();  // Accès au premier résultat
+        else
+            return $stmtResultats;
+    }
+
+    // Renvoie un objet de connexion à la BDD
+    private function getBdd() {
         if ($this->bdd === null) {
-            $this->bdd = new PDO('mysql:host=localhost;dbname=monblog', 'root', 'PA9.pXa+MlTXA6Q');
-            $this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->bdd->query('set names utf8');
+            $this->bdd = new PDO(
+                'mysql:host=localhost;dbname=monblog;charset=utf8',
+                'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         return $this->bdd;
-    }
-
-    protected function executerLecture($sql, $lirePremierElement = false)
-    {
-        $resultats = $this->getBdd()->query($sql);
-        if ($lirePremierElement === true)
-            return $resultats->fetch();
-        else
-            return $resultats;
-    }
-
-    protected function executerModification($sql, $valeurs)
-    {
-        $requete = $this->getBdd()->prepare($sql);
-        $requete->execute($valeurs);
     }
 
 }
