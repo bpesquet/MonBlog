@@ -20,10 +20,6 @@
           </ul>
         </section>
         <section>
-          <h1>Commentaires récents</h1>
-          <!-- Enrichi plus tard -->
-        </section>
-        <section>
           <h1>Administration</h1>
           <ul>
             <li><a href="todo">Ecrire un billet</a></li>

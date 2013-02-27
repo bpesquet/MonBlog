@@ -1,7 +1,7 @@
 <?php $titre = 'Mon Blog - MVC objet' ?>
 
 <?php ob_start() ?>
-<?php foreach ($billets as $billet): ?>
+<?php foreach ($stmtBillets as $billet): ?>
     <article>
         <header>
             <h1 class="titreBillet">
@@ -12,7 +12,6 @@
             <time><?= $billet['BIL_DATE'] ?></time>
         </header>
         <p><?= $billet['BIL_CONTENU'] ?></p>
-        <footer class="commentaire"><?= $billet['NB_COM'] ?> commentaire(s)</footer>
     </article>
     <hr />
 <?php endforeach; ?>
