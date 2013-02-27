@@ -3,7 +3,7 @@
 require 'modele.php';
 
 try {
-    $billets = getBillets();        // Utilisation des services du modèle
+    $stmtBillets = getBillets();    // Utilisation des services du modèle
     require 'listeBillets.php';     // Génération de la vue associée
 }
 catch (Exception $e) {

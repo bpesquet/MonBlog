@@ -4,16 +4,9 @@
 // Renvoie la liste de tous les billets, triés par identifiant décroissant
 function getBillets() {
     $bdd = getBDD();
-
-//    $requete = "select * from T_BILLET order by BIL_ID desc";
-//    
-    // Bonus : affichage du nombre de commentaires
-    $requete = "select B.BIL_ID, BIL_DATE, BIL_TITRE, BIL_CONTENU, COUNT(COM_ID) AS NB_COM 
-        from T_BILLET B LEFT JOIN T_COMMENTAIRE C ON B.BIL_ID=C.BIL_ID 
-        group by B.BIL_ID order by B.BIL_ID desc";
-
-    $billets = $bdd->query($requete);
-    return $billets;
+    $requeteBillets = "select * from T_BILLET order by BIL_ID desc";
+    $stmtBillets = $bdd->query($requeteBillets);
+    return $stmtBillets;
 }
 
 // Effectue la connexion à la BDD
