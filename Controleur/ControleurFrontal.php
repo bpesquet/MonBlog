@@ -11,13 +11,11 @@ class ControleurFrontal extends Controleur {
 
     private $ctrlBillet;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->ctrlBillet = new ControleurBillet();
     }
 
-    public function routerRequete()
-    {
+    public function routerRequete() {
         try {
             if (!empty($_POST)) {
                 $this->routerRequetePost();
@@ -34,8 +32,7 @@ class ControleurFrontal extends Controleur {
         }
     }
 
-    private function routerRequetePost()
-    {
+    private function routerRequetePost() {
         if (isset($_POST['auteur'])
                 And isset($_POST['commentaire'])
                 And isset($_POST['idBillet'])) {
@@ -53,29 +50,21 @@ class ControleurFrontal extends Controleur {
             throw new Exception('Paramètres $_POST non reconnus');
     }
 
-    private function routerRequeteGet()
-    {
-        if (isset($_GET['action'])) {
-            if ($_GET['action'] == 'afficherBillet') {
-                if (isset($_GET['id'])) {
-                    $idBillet = intval($_GET['id']);
-                    if ($idBillet != 0)
-                        $this->ctrlBillet->afficherBillet($idBillet);
-                    else {
-                        $id = strip_tags($_GET['id']);
-                        throw new Exception("Identifiant de billet '$idBillet' non valide");
-                    }
+    private function routerRequeteGet() {
+        $action = $this->identifierAction();
+        switch ($action) {
+            case 'afficherBillet' :
+                $idBillet = $this->recupererVariable($_GET['id']);
+                if ($idBillet != 0)
+                    $this->ctrlBillet->afficherBillet($idBillet);
+                else {
+                    throw new Exception("Identifiant de billet '$idBillet' non valide");
                 }
-                else
-                    throw new Exception("Identifiant de billet non défini");
-            }
-            else {
-                $action = strip_tags($_GET['action']);
+                break;
+            default :
                 throw new Exception("Action '$action' non valide");
-            }
+                break;
         }
-        else
-            throw new Exception("Aucune action définie");
     }
 
 }
