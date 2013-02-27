@@ -31,7 +31,7 @@
                 $bdd = new PDO('mysql:host=localhost;dbname=monblog;charset=utf8', 'root', '');
                 $requeteBillets = "select * from T_BILLET order by BIL_ID desc";
                 $stmtBillets = $bdd->query($requeteBillets);
-                foreach ($stmtBillets as $billet) {
+                foreach ($stmtBillets as $billet):
                     ?>
                     <article>
                         <header>
@@ -41,8 +41,7 @@
                         <p><?= $billet['BIL_CONTENU'] ?></p>
                     </article>
                     <hr />
-                <?php }
-                ?>
+                <?php endforeach; ?>
             </div> <!-- #contenu -->
             <footer id="piedBlog">
                 Blog réalisé avec PHP, HTML5 et CSS.
