@@ -14,7 +14,7 @@ html, body {
 
 body {
     color: #bfbfbf;
-	background: black;
+    background: black;
     font-family: 'Futura-Medium', 'Futura', 'Trebuchet MS', sans-serif;
 }
 
@@ -23,7 +23,7 @@ a {
 }
 
 a:hover, a:focus {
-	color: crimson;
+    color: crimson;
 }
 
 nav {
@@ -56,6 +56,11 @@ h1 {
 
 .titreBillet {
     margin-bottom : 0px;
+}
+
+.titreBillet a {
+    color: white;
+    text-decoration: none;  /* Désactive le soulignement des liens vers les billets */
 }
 
 .commentaire {
