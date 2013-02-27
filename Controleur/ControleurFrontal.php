@@ -17,11 +17,8 @@ class ControleurFrontal extends Controleur {
 
     public function routerRequete() {
         try {
-            if (!empty($_POST)) {
-                $this->routerRequetePost();
-            }
-            elseif (!empty($_GET)) {
-                $this->routerRequeteGet();
+            if (!empty($_GET)) {
+                $this->executerAction();
             }
             else {
                 $this->ctrlBillet->listerBillets();  // action par défaut
@@ -32,33 +29,16 @@ class ControleurFrontal extends Controleur {
         }
     }
 
-    private function routerRequetePost() {
-        if (isset($_POST['auteur'])
-                And isset($_POST['commentaire'])
-                And isset($_POST['idBillet'])) {
-            $auteur = strip_tags($_POST['auteur']);
-            $commentaire = strip_tags($_POST['commentaire']);
-            $idBillet = intval($_POST['idBillet']);
-            if ($idBillet != 0)
-                $this->ctrlBillet->ajouterCommentaire($auteur, $commentaire, $idBillet);
-            else {
-                $id = strip_tags($_POST['id']);
-                throw new Exception("Identifiant de billet '$id' non valide");
-            }
-        }
-        else
-            throw new Exception('Paramètres $_POST non reconnus');
-    }
-
-    private function routerRequeteGet() {
-        $action = $this->identifierAction();
+    private function executerAction() {
+        $action = $this->getParametreUrl('action');
         switch ($action) {
             case 'afficherBillet' :
-                $idBillet = $this->recupererVariable($_GET['id']);
+                $param = $this->getParametreUrl('id');
+                $idBillet = intval($param);
                 if ($idBillet != 0)
                     $this->ctrlBillet->afficherBillet($idBillet);
                 else {
-                    throw new Exception("Identifiant de billet '$idBillet' non valide");
+                    throw new Exception("Identifiant de billet '$param' non valide");
                 }
                 break;
             default :
