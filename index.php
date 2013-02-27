@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="style.css" />
-        <title>Mon Blog - Version sans MVC</title>
+        <title>Mon Blog - Sans MVC</title>
     </head>
     <body>
         <div id="global">
@@ -18,10 +18,6 @@
                         <li><a href="todo">Billets récents</a></li>
                         <li><a href="todo">Tous les billets</a></li>
                     </ul>
-                </section>
-                <section>
-                    <h1>Commentaires récents</h1>
-                    <!-- Enrichi plus tard -->
                 </section>
                 <section>
                     <h1>Administration</h1>
@@ -43,13 +39,6 @@
                             <time><?= $billet['BIL_DATE'] ?></time>
                         </header>
                         <p><?= $billet['BIL_CONTENU'] ?></p>
-                        <?php
-                        $requeteCommentaires = 'select COUNT(*) from T_COMMENTAIRE' .
-                                ' where BIL_ID = ' . $billet['BIL_ID'];
-                        $stmtCommentaires = $bdd->query($requeteCommentaires);
-                        $nbComm = $stmtCommentaires->fetchColumn();
-                        echo '<footer class="commentaire">' . $nbComm . ' commentaire(s)</footer>';
-                        ?>
                     </article>
                     <hr />
                 <?php }
