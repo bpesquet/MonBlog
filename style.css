@@ -9,21 +9,21 @@
 	- un parent (body) en "height: 100%";
 	- le parent de body également en "height: 100%". */
 html, body {
-	height: 100%;
+    height: 100%;
 }
 
 body {
     color: #bfbfbf;
-	background: black;
+    background: black;
     font-family: 'Futura-Medium', 'Futura', 'Trebuchet MS', sans-serif;
 }
 
 a {
-	color: #bfbfbf;
+    color: #bfbfbf;
 }
 
 a:hover, a:focus {
-	color: crimson;
+    color: crimson;
 }
 
 nav {
@@ -47,7 +47,7 @@ h1 {
 #contenu {
     margin-bottom : 30px;
     overflow: hidden;   /* Evite au bloc central de glisser sous le menu latéral 
-						   (alternative à la définition de marges pour ces blocs) */
+                        (alternative à la définition de marges pour ces blocs) */
 }
 
 #titreBlog, #piedBlog {
@@ -56,12 +56,4 @@ h1 {
 
 .titreBillet {
     margin-bottom : 0px;
-}
-
-.commentaire {
-    text-align: right;
-}
-
-#titreReponses {
-    font-size : 100%;
 }
