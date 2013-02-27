@@ -1,13 +1,27 @@
-<?php   // partie Contrôleur du blog
+<?php
 
-require 'modele.php';
+require('Controleur/actions.php');
 
 try {
-    $stmtBillets = getBillets();    // Utilisation des services du modèle
-    require 'listeBillets.php';     // Génération de la vue associée
+    if (isset($_GET['action'])) {
+        if ($_GET['action'] == 'afficherBillet') {
+            if (isset($_GET['id'])) {
+                $idBillet = intval($_GET['id']);
+                if ($idBillet != 0)
+                    afficherBillet($idBillet);
+                else
+                    throw new Exception("Identifiant de billet non valide");
+            }
+            else
+                throw new Exception("Identifiant de billet non défini");
+        }
+        else
+            throw new Exception("Action non valide");
+    }
+    else {
+        listerBillets();  // action par défaut
+    }
 }
 catch (Exception $e) {
-    $msgErreur = $e->getMessage();  // Création du message d'erreur
-    require 'erreur.php';           // Génération de la vue d'erreur
+    afficherErreur($e->getMessage());
 }
-

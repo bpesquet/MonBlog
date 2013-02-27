@@ -6,7 +6,9 @@
     <article>
         <header>
             <h1 class="titreBillet">
-                <?= $billet['BIL_TITRE'] ?>
+                <a href="<?= $lienBillet . $billet['BIL_ID'] ?>">
+                    <?= $billet['BIL_TITRE'] ?>
+                </a>
             </h1>
             <time><?= $billet['BIL_DATE'] ?></time>
         </header>
