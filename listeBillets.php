@@ -1,7 +1,7 @@
 <?php $titre = 'Mon Blog - MVC simple' ?>
 
 <?php ob_start() ?>
-<?php foreach ($stmtBillets as $billet):
+<?php foreach ($billets as $billet):
     ?>
     <article>
         <header>

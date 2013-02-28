@@ -8,7 +8,7 @@ try {
         $id = intval($_GET['id']);  
         if ($id != 0) {
             $billet = getBillet($id);
-            $stmtCommentaires = getCommentaires($id);
+            $commentaires = getCommentaires($id);
             require 'detailsBillet.php';
         }
         else

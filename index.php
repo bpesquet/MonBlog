@@ -3,7 +3,7 @@
 require 'modele.php';
 
 try {
-    $stmtBillets = getBillets();    // Utilisation des services du modèle
+    $billets = getBillets();        // Utilisation des services du modèle
     $lienBillet = "billet.php?id="; // Lien vers la page contrôleur billet
     require 'listeBillets.php';     // Génération de la vue associée
 }
