@@ -8,7 +8,7 @@
     <body>
         <div id="global">
             <header>
-                <h1 id="titreBlog">Mon Blog</h1>
+                <h1 id="titreBlog"><a href="index.php">Mon Blog</a></h1>
                 <p>Je vous souhaite la bienvenue sur ce modeste blog.</p>
             </header>
             <nav>
@@ -30,8 +30,8 @@
                 <?php
                 $bdd = new PDO('mysql:host=localhost;dbname=monblog;charset=utf8', 'root', '');
                 $requeteBillets = "select * from T_BILLET order by BIL_ID desc";
-                $stmtBillets = $bdd->query($requeteBillets);
-                foreach ($stmtBillets as $billet):
+                $billets = $bdd->query($requeteBillets);
+                foreach ($billets as $billet):
                     ?>
                     <article>
                         <header>
