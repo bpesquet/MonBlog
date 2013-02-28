@@ -23,18 +23,18 @@ class ControleurBillet extends Controleur
     
     public function listerBillets()
     {
-        $stmtBillets = $this->billet->lireTout();
+        $billets = $this->billet->lireTout();
         $lienBillet = "index.php?action=afficherBillet&id=";
         $this->genererVue('listeBillets', 
-                array('stmtBillets' => $stmtBillets, 'lienBillet' => $lienBillet));
+                array('billets' => $billets, 'lienBillet' => $lienBillet));
     }
 
     public function afficherBillet($id)
     {
         $billet = $this->billet->lire($id);
-        $stmtCommentaires = $this->commentaire->lireListe($id);
+        $commentaires = $this->commentaire->lireListe($id);
         $this->genererVue('detailsBillet', 
-                array('billet' => $billet, 'stmtCommentaires' => $stmtCommentaires));
+                array('billet' => $billet, 'commentaires' => $commentaires));
     }
 }
 

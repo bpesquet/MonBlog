@@ -12,7 +12,7 @@
 <header>
     <h1 id="titreReponses">Réponse(s) à <?= $billet['BIL_TITRE'] ?></h1>
 </header>
-<?php foreach ($stmtCommentaires as $commentaire): ?>
+<?php foreach ($commentaires as $commentaire): ?>
     <p><?= $commentaire['COM_AUTEUR'] ?> dit :</p>
     <p><?= $commentaire['COM_CONTENU'] ?></p>
 <?php endforeach; ?>
