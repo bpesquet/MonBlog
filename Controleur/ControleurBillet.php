@@ -36,5 +36,10 @@ class ControleurBillet extends Controleur
         $this->genererVue('detailsBillet', 
                 array('billet' => $billet, 'commentaires' => $commentaires));
     }
+    
+    public function ajouterCommentaire($auteur, $commentaire, $idBillet) {
+        $this->commentaire->ajouter($auteur, $commentaire, $idBillet);
+        $this->afficherBillet($idBillet);
+    }
 }
 

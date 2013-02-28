@@ -20,6 +20,9 @@ class ControleurFrontal extends Controleur {
             if (!empty($_GET)) {
                 $this->executerAction();
             }
+            elseif (!empty($_POST)) {
+                $this->validerFormulaire();
+            }
             else {
                 $this->ctrlBillet->listerBillets();  // action par défaut
             }
@@ -45,6 +48,17 @@ class ControleurFrontal extends Controleur {
                 throw new Exception("Action '$action' non valide");
                 break;
         }
+    }
+
+    private function validerFormulaire() {
+        $auteur = $this->getParametreRequete('auteur');
+        $commentaire = $this->getParametreRequete('commentaire');
+        $param = $this->getParametreRequete('idBillet');
+        $idBillet = intval($param);
+        if ($idBillet != 0)
+            $this->ctrlBillet->ajouterCommentaire($auteur, $commentaire, $idBillet);
+        else
+            throw new Exception("Identifiant de billet '$param' non valide");
     }
 
 }

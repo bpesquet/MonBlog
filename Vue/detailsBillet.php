@@ -16,6 +16,13 @@
     <p><?= $commentaire['COM_AUTEUR'] ?> dit :</p>
     <p><?= $commentaire['COM_CONTENU'] ?></p>
 <?php endforeach; ?>
+<hr />
+<form method="post" action="index.php">
+    <input id="auteur" name="auteur" type="text" placeholder="Votre pseudo" required /><br />
+    <textarea id="txt_commentaire" name="commentaire" rows="4" placeholder="Votre commentaire" required></textarea><br />
+    <input name="idBillet" type="hidden" value="<?= $billet['BIL_ID'] ?>" />
+    <input type="submit" value="Commenter" />
+</form>
 <?php $contenu = ob_get_clean() ?>
 
 <?php include 'gabarit.php' ?>

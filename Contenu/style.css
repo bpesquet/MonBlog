@@ -9,7 +9,7 @@
 	- un parent (body) en "height: 100%";
 	- le parent de body également en "height: 100%". */
 html, body {
-	height: 100%;
+    height: 100%;
 }
 
 body {
@@ -19,7 +19,7 @@ body {
 }
 
 a {
-	color: #bfbfbf;
+    color: #bfbfbf;
 }
 
 a:hover, a:focus {
@@ -61,10 +61,6 @@ h1 {
 .titreBillet a, #titreBlog a {
     color: white;
     text-decoration: none;  /* Désactive le soulignement des liens vers les billets */
-}
-
-.commentaire {
-    text-align: right;
 }
 
 #titreReponses {

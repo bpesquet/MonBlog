@@ -29,4 +29,13 @@ abstract class Controleur {
         else
             throw new Exception("Paramètre '$nomParametre' absent de l'URL");
     }
+    
+    protected function getParametreRequete($nomParametre) {
+        if (isset($_POST[$nomParametre])) {
+            $param = htmlentities($_POST[$nomParametre], ENT_QUOTES);
+            return $param;
+        }
+        else
+            throw new Exception("Paramètre '$nomParametre' absent de la requête");
+    }
 }
