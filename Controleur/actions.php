@@ -4,7 +4,7 @@ require 'Modele/modele.php';
 
 // Affiche la liste de tous les billets du blog
 function listerBillets() {
-    $stmtBillets = getBillets();
+    $billets = getBillets();
     $lienBillet = "index.php?action=afficherBillet&id=";
     require 'Vue/listeBillets.php';
 }
@@ -12,7 +12,7 @@ function listerBillets() {
 // Affiche un billet et tous ses commentaires
 function afficherBillet($id) {
     $billet = getBillet($id);
-    $stmtCommentaires = getCommentaires($id);
+    $commentaires = getCommentaires($id);
     require 'Vue/detailsBillet.php';
 }
 
