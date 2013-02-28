@@ -57,3 +57,8 @@ h1 {
 .titreBillet {
     margin-bottom : 0px;
 }
+
+.titreBillet a, #titreBlog a {
+    color: white;
+    text-decoration: none;  /* Désactive le soulignement des liens */
+}
