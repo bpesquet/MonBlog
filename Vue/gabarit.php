@@ -8,7 +8,7 @@
   <body>
     <div id="global">
       <header>
-        <h1 id="titreBlog">Mon Blog</h1>
+        <h1 id="titreBlog"><a href="index.php">Mon Blog</a></h1>
         <p>Je vous souhaite la bienvenue sur ce modeste blog.</p>
       </header>
       <nav>

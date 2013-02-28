@@ -58,13 +58,9 @@ h1 {
     margin-bottom : 0px;
 }
 
-.titreBillet a {
+.titreBillet a, #titreBlog a {
     color: white;
-    text-decoration: none;  /* Désactive le soulignement des liens vers les billets */
-}
-
-.commentaire {
-    text-align: right;
+    text-decoration: none;  /* Désactive le soulignement des liens */
 }
 
 #titreReponses {
