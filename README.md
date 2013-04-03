@@ -4,6 +4,9 @@ Support de l'article [Evoluer vers une architecture MVC en PHP] (http://bpesquet
 
 Auteur : [Baptiste Pesquet](https://github.com/bpesquet)
 
+
+## Description
+
 Cette version initiale n'emploie pas l'architecture MVC.
 
 
