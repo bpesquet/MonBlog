@@ -28,6 +28,7 @@
             </nav>
             <div id="contenu">
                 <?php
+                // Connexion à la base "monblog" locale, utilisation du compte root sans mot de passe
                 $bdd = new PDO('mysql:host=localhost;dbname=monblog;charset=utf8', 'root', '');
                 $requeteBillets = "select * from T_BILLET order by BIL_ID desc";
                 $billets = $bdd->query($requeteBillets);
