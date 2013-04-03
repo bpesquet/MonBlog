@@ -1,22 +1,10 @@
-MonBlog
-=======
+# [MonBlog](http://github.com/bpesquet/MonBlog)
 
-Support du cours sur l'architecture Web.
-Version sans MVC.
-Démonstration sur http://monblog.bpesquet.fr/sans-mvc/
+Support de l'article "Evoluer vers une architecture MVC en PHP" (http://bpesquet.developpez.com/tutoriels/php/evoluer-architecture-mvc/)
 
-# [Twitter Bootstrap v2.2.2](http://twitter.github.com/bootstrap) [![Build Status](https://secure.travis-ci.org/twitter/bootstrap.png)](http://travis-ci.org/twitter/bootstrap)
-
-Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and easier web development, created and maintained by [Mark Otto](http://twitter.com/mdo) and [Jacob Thornton](http://twitter.com/fat).
-
-To get started, checkout http://getbootstrap.com!
+Cette version initiale n'emploie pas l'architecture MVC.
 
 
+## Démonstration en ligne
 
-## Quick start
-
-Three quick start options are available:
-
-* [Download the latest release](https://github.com/twitter/bootstrap/zipball/master).
-* Clone the repo: `git clone git://github.com/twitter/bootstrap.git`.
-* Install with Twitter's [Bower](http://twitter.github.com/bower): `bower install bootstrap`.
+(http://monblog.bpesquet.fr/sans-mvc/)
