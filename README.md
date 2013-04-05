@@ -7,6 +7,9 @@ Auteur : [Baptiste Pesquet](https://github.com/bpesquet)
 
 ## Description
 
-* Cette version emploie une architecture MVC simple : pas de contrôleur frontal, fichiers sources regroupés dans le même répertoire.
+* Cette version emploie une architecture MVC simple : 
+** MVC procédural et non orienté objet
+** Pas de contrôleur frontal
+** Les fichiers sources sont regroupés dans le même répertoire.
 * [Démonstration en ligne] (http://monblog.bpesquet.fr/mvc-simple/)
 
