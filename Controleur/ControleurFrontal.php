@@ -12,7 +12,7 @@ class ControleurFrontal extends Controleur {
     private $ctrlBillet;
 
     /**
-     * Constructer 
+     * Constructeur 
      */
     public function __construct() {
         $this->ctrlBillet = new ControleurBillet();
