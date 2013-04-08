@@ -11,14 +11,16 @@ abstract class Controleur {
     /**
      * Génère une vue (fichier HTML contenant des éléments dynamiques PHP)
      * 
-     * @param type $vue Le nom de la vue (nom du fichier dans le répertoire Vue/, sans extension)
+     * @param type $vue Le nom de la vue (nom du fichier dans le répertoire des vues, sans extension)
      * @param type $donnees Le tableau des données dynamiques utilisées par la vue 
      * @throws Exception Si le fichier vue est introuvable
      */
     protected function genererVue($vue, $donnees = array()) {
         $fichierVue = 'Vue/' . $vue . '.php';
         if (file_exists($fichierVue)) {
+            // Rend les éléments du tableau $donnees accessibles dans la vue
             extract($donnees);
+            // Inclut la vue, ce qui déclenche son affichage
             require $fichierVue;
         }
         else

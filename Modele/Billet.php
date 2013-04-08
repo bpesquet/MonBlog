@@ -5,11 +5,15 @@ require_once 'Modele/Modele.php';
 /**
  * Classe modélisant un billet de blog
  *
- * @author Baptiste
+ * @author Baptiste Pesquet
  */
 class Billet extends Modele
 {
-    // Renvoie la liste des billets
+    /**
+     * Renvoie la liste des billets
+     * 
+     * @return type La liste des billets (objet PDOStatement)
+     */
     public function lireTout()
     {
         return $this->executerLecture(
@@ -17,6 +21,13 @@ class Billet extends Modele
     }
 
     // Renvoie un billet identifié
+    /**
+     * Renvoie un billet du blog
+     * 
+     * @param type $id L'identifiant du billet (entier)
+     * 
+     * @return type Le billet (tableau associatif)
+     */
     public function lire($id)
     {
         return $this->executerLecture(

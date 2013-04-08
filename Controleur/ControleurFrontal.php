@@ -3,18 +3,25 @@
 require 'Controleur/ControleurBillet.php';
 
 /**
- * Description of ControleurFrontal
+ * Contrôleur frontal du blog
  *
- * @author Baptiste
+ * @author Baptiste Pesquet
  */
 class ControleurFrontal extends Controleur {
 
     private $ctrlBillet;
 
+    /**
+     * Constructer 
+     */
     public function __construct() {
         $this->ctrlBillet = new ControleurBillet();
     }
 
+    /**
+     * Méthode appelée lors de chaque demande de page sur le site.
+     * Examine les paramètres de l'URL et détermine l'action à entreprendre 
+     */
     public function routerRequete() {
         try {
             if (!empty($_GET)) {
@@ -32,11 +39,17 @@ class ControleurFrontal extends Controleur {
         }
     }
 
+    /**
+     * Exécute une action
+     * 
+     * @throws Exception Si aucune action n'est reconnue dans les paramètres de l'URL
+     */
     private function executerAction() {
         $action = $this->getParametreUrl('action');
         switch ($action) {
             case 'afficherBillet' :
                 $param = $this->getParametreUrl('id');
+                // On récupère la valeur entière du paramètre de l'URL
                 $idBillet = intval($param);
                 if ($idBillet != 0)
                     $this->ctrlBillet->afficherBillet($idBillet);
@@ -50,10 +63,16 @@ class ControleurFrontal extends Controleur {
         }
     }
 
+    /**
+     * Valide un formulaire du blog
+     * 
+     * @throws Exception En cas d'erreur dans les données du formulaire
+     */
     private function validerFormulaire() {
         $auteur = $this->getParametreRequete('auteur');
         $commentaire = $this->getParametreRequete('commentaire');
         $param = $this->getParametreRequete('idBillet');
+        // On récupère la valeur entière du paramètre de la requête
         $idBillet = intval($param);
         if ($idBillet != 0)
             $this->ctrlBillet->ajouterCommentaire($auteur, $commentaire, $idBillet);
