@@ -9,4 +9,3 @@ Auteur : [Baptiste Pesquet](https://github.com/bpesquet)
 
 * Cette version finale utilise une architecture MVC orientée objet avec un contrôleur frontal.
 * [Démonstration en ligne] (http://monblog.bpesquet.fr/)
-
