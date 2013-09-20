@@ -3,21 +3,20 @@
 require 'Modele/modele.php';
 
 // Affiche la liste de tous les billets du blog
-function listerBillets() {
+function afficherAccueil() {
     $billets = getBillets();
     $lienBillet = "index.php?action=afficherBillet&id=";
-    require 'Vue/listeBillets.php';
+    require 'Vue/vueAccueil.php';
 }
 
-// Affiche un billet et tous ses commentaires
+// Affiche les détails sur un billet
 function afficherBillet($id) {
     $billet = getBillet($id);
     $commentaires = getCommentaires($id);
-    require 'Vue/detailsBillet.php';
+    require 'Vue/vueBillet.php';
 }
 
 // Affiche une erreur
-function afficherErreur($msgErreur)
-{
-    require 'Vue/erreur.php';
+function afficherErreur($msgErreur) {
+    require 'Vue/vueErreur.php';
 }

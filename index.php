@@ -1,14 +1,15 @@
 <?php
 
-require('Controleur/actions.php');
+require 'Controleur/controleur.php';
 
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'afficherBillet') {
             if (isset($_GET['id'])) {
                 $idBillet = intval($_GET['id']);
-                if ($idBillet != 0)
+                if ($idBillet != 0) {
                     afficherBillet($idBillet);
+                }
                 else
                     throw new Exception("Identifiant de billet non valide");
             }
@@ -18,8 +19,8 @@ try {
         else
             throw new Exception("Action non valide");
     }
-    else {
-        listerBillets();  // action par défaut
+    else {  // aucune action définie : affichage de l'accueil
+        afficherAccueil();
     }
 }
 catch (Exception $e) {
