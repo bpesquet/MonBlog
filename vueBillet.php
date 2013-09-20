@@ -1,6 +1,6 @@
-<?php $titre = "Mon Blog - Détail d'un billet" ?>
+<?php $titre = "Mon Blog - Détail d'un billet"; ?>
 
-<?php ob_start() ?>
+<?php ob_start(); ?>
 <article>
     <header>
         <h1 class="titreBillet"><?= $billet['BIL_TITRE'] ?></h1>
@@ -16,7 +16,6 @@
     <p><?= $commentaire['COM_AUTEUR'] ?> dit :</p>
     <p><?= $commentaire['COM_CONTENU'] ?></p>
 <?php endforeach; ?>
-<?php $contenu = ob_get_clean() ?>
+<?php $contenu = ob_get_clean(); ?>
 
-<?php include 'gabarit.php' ?>
-
+<?php require 'gabarit.php'; ?>
