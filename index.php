@@ -13,7 +13,8 @@
             </header>
             <div id="contenu">
                 <?php
-                $bdd = new PDO('mysql:host=localhost;dbname=monblog;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+                $bdd = new PDO('mysql:host=localhost;dbname=monblog;charset=utf8',
+                        'root', '');
                 $billets = $bdd->query('select * from T_BILLET order by BIL_ID desc');
                 foreach ($billets as $billet):
                     ?>
