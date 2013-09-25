@@ -4,11 +4,11 @@ require 'Controleur/controleur.php';
 
 try {
     if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'afficherBillet') {
+        if ($_GET['action'] == 'billet') {
             if (isset($_GET['id'])) {
                 $idBillet = intval($_GET['id']);
                 if ($idBillet != 0) {
-                    afficherBillet($idBillet);
+                    billet($idBillet);
                 }
                 else
                     throw new Exception("Identifiant de billet non valide");
@@ -20,9 +20,9 @@ try {
             throw new Exception("Action non valide");
     }
     else {  // aucune action définie : affichage de l'accueil
-        afficherAccueil();
+        accueil();
     }
 }
 catch (Exception $e) {
-    afficherErreur($e->getMessage());
+    erreur($e->getMessage());
 }
