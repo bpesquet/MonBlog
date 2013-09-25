@@ -15,15 +15,17 @@
                 <?php
                 $bdd = new PDO('mysql:host=localhost;dbname=monblog;charset=utf8',
                         'root', '');
-                $billets = $bdd->query('select * from T_BILLET order by BIL_ID desc');
+                $billets = $bdd->query('select BIL_ID as id, BIL_DATE as date,'
+                        . ' BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET'
+                        . ' order by BIL_ID desc');
                 foreach ($billets as $billet):
                     ?>
                     <article>
                         <header>
-                            <h1 class="titreBillet"><?= $billet['BIL_TITRE'] ?></h1>
-                            <time><?= $billet['BIL_DATE'] ?></time>
+                            <h1 class="titreBillet"><?= $billet['titre'] ?></h1>
+                            <time><?= $billet['date'] ?></time>
                         </header>
-                        <p><?= $billet['BIL_CONTENU'] ?></p>
+                        <p><?= $billet['contenu'] ?></p>
                     </article>
                     <hr />
                 <?php endforeach; ?>
