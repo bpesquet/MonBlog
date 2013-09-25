@@ -4,12 +4,12 @@
 <?php foreach ($billets as $billet): ?>
     <article>
         <header>
-            <a href="<?= $lienBillet . $billet['BIL_ID'] ?>">
-                <h1 class="titreBillet"><?= $billet['BIL_TITRE'] ?></h1>
+            <a href="<?= $lienBillet . $billet['id'] ?>">
+                <h1 class="titreBillet"><?= $billet['titre'] ?></h1>
             </a>
-            <time><?= $billet['BIL_DATE'] ?></time>
+            <time><?= $billet['date'] ?></time>
         </header>
-        <p><?= $billet['BIL_CONTENU'] ?></p>
+        <p><?= $billet['contenu'] ?></p>
     </article>
     <hr />
 <?php endforeach; ?>
