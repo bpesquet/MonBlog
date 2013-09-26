@@ -1,8 +1,10 @@
 <?php
 
-require 'Controleur/ControleurFrontal.php';
+// Contrôleur frontal : instancie un routeur pour traiter la requête entrante
 
-$ctrl = new ControleurFrontal();
-$ctrl->routerRequete();
+require 'Framework/Routeur.php';
+
+$routeur = new Routeur();
+$routeur->routerRequete();
 
 
