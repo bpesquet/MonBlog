@@ -5,7 +5,6 @@ require 'Modele/Modele.php';
 // Affiche la liste de tous les billets du blog
 function accueil() {
     $billets = getBillets();
-    $lienBillet = "index.php?action=billet&id=";
     require 'Vue/vueAccueil.php';
 }
 
