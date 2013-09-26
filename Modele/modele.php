@@ -1,41 +1,48 @@
 <?php
 
-// Renvoie la liste des billets du blog
-function getBillets() {
-    $bdd = getBdd();
-    $billets = $bdd->query('select BIL_ID as id, BIL_DATE as date,'
-            . ' BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET'
-            . ' order by BIL_ID desc');
-    return $billets;
-}
+/**
+ * Classe abstraite Modèle.
+ * Centralise les services d'accès à une base de données.
+ * Utilise l'API PDO
+ *
+ * @author Baptiste Pesquet
+ */
+abstract class Modele {
 
-// Renvoie les informations sur un billet
-function getBillet($idBillet) {
-    $bdd = getBdd();
-    $stmtBillet = $bdd->prepare('select BIL_ID as id, BIL_DATE as date,'
-            . ' BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET'
-            . ' where BIL_ID=?');
-    $stmtBillet->execute(array($idBillet));
-    if ($stmtBillet->rowCount() > 0)
-        return $stmtBillet->fetch();  // Accès à la première ligne de résultat
-    else
-        throw new Exception("Aucun billet ne correspond à l'identifiant '$idBillet'");
-}
+    /** Objet PDO d'accès à la BD */
+    private $bdd;
 
-// Renvoie la liste des commentaires associés à un billet
-function getCommentaires($idBillet) {
-    $bdd = getBdd();
-    $stmtCommentaires = $bdd->prepare('select COM_ID as id, COM_DATE as date,'
-            . ' COM_AUTEUR as auteur, COM_CONTENU as contenu from T_COMMENTAIRE'
-            . ' where BIL_ID=?');
-    $stmtCommentaires->execute(array($idBillet));
-    return $stmtCommentaires;
-}
+    /**
+     * Exécute une requête SQL
+     * 
+     * @param string $sql La requête SQL
+     * @param array $valeurs Les valeurs associées à la requête
+     * @return PDOStatement Le résultat renvoyé par la requête
+     */
+    protected function executerRequete($sql, $params = null) {
+        if ($params == null) {
+            $resultat = $this->getBdd()->query($sql);
+        }
+        else {
+            $resultat = $this->getBdd()->prepare($sql);
+            $resultat->execute($params);
+        }
+        return $resultat;
+    }
 
-// Effectue la connexion à la BDD
-// Instancie et renvoie l'objet PDO associé
-function getBdd() {
-    $bdd = new PDO('mysql:host=localhost;dbname=monblog;charset=utf8', 'root',
-            '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-    return $bdd;
+    /**
+     * Renvoie un objet de connexion à la BDD en initialisant la connexion au besoin
+     * 
+     * @return PDO L'objet PDO de connexion à la BDD
+     */
+    private function getBdd() {
+        if ($this->bdd == null) {
+            // Création de la connexion
+            $this->bdd = new PDO('mysql:host=localhost;dbname=monblog;charset=utf8',
+                    'root', '',
+                    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        }
+        return $this->bdd;
+    }
+
 }
