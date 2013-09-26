@@ -3,34 +3,39 @@
 require_once 'Modele/Modele.php';
 
 /**
- * Classe modélisant un billet de blog
- *
+ * Fournit les services d'accès aux genres musicaux 
+ * 
  * @author Baptiste Pesquet
  */
-class Billet extends Modele
-{
-    /**
-     * Renvoie la liste des billets
+class Billet extends Modele {
+
+    /** Renvoie la liste des billets du blog
      * 
-     * @return type La liste des billets (objet PDOStatement)
+     * @return PDOStatement La liste des billets
      */
-    public function lireTout()
-    {
-        return $this->executerLecture(
-            'select * from T_BILLET order by BIL_ID desc');
+    public function getBillets() {
+        $sql = 'select BIL_ID as id, BIL_DATE as date,'
+                . ' BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET'
+                . ' order by BIL_ID desc';
+        $billets = $this->executerRequete($sql);
+        return $billets;
     }
 
-    // Renvoie un billet identifié
-    /**
-     * Renvoie un billet du blog
+    /** Renvoie les informations sur un billet
      * 
-     * @param type $id L'identifiant du billet (entier)
-     * 
-     * @return type Le billet (tableau associatif)
+     * @param int $id L'identifiant du billet
+     * @return array Le billet
+     * @throws Exception Si l'identifiant du billet est inconnu
      */
-    public function lire($id)
-    {
-        return $this->executerLecture(
-            'select * from T_BILLET where BIL_ID=' . $id, true);
+    public function getBillet($idBillet) {
+        $sql = 'select BIL_ID as id, BIL_DATE as date,'
+                . ' BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET'
+                . ' where BIL_ID=?';
+        $billet = $this->executerRequete($sql, array($idBillet));
+        if ($billet->rowCount() > 0)
+            return $billet->fetch();  // Accès à la première ligne de résultat
+        else
+            throw new Exception("Aucun billet ne correspond à l'identifiant '$idBillet'");
     }
+
 }
