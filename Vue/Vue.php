@@ -14,9 +14,12 @@ class Vue {
     }
 
     public function generer($donnees) {
+        // Génération de la partie spécifique de la vue
         $contenu = $this->genererFichier($this->fichier, $donnees);
+        // Génération du gabarit commun utilisant la partie spécifique
         $vue = $this->genererFichier('Vue/gabarit.php',
                 array('titre' => $this->titre, 'contenu' => $contenu));
+        // Renvoi de la vue au navigateur
         echo $vue;
     }
 
@@ -24,11 +27,12 @@ class Vue {
         if (file_exists($fichier)) {
             // Rend les éléments du tableau $donnees accessibles dans la vue
             extract($donnees);
-            // TODO
+            // Démarrage de la temporisation de sortie
             ob_start();
-            // Inclut le fichier vue, ce qui déclenche le remplissage du buffer de sortie
+            // Inclut le fichier vue
+            // Son résultat est placé dans le tampon de sortie
             require $fichier;
-            // TODO
+            // Arrêt de la temporisation et renvoi du tampon de sortie
             return ob_get_clean();
         }
         else {
