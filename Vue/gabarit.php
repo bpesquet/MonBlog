@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="Contenu/style.css" />
-        <title><?= $this->titre ?></title>
+        <title><?= $titre ?></title>
     </head>
     <body>
         <div id="global">
