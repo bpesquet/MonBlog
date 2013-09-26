@@ -37,12 +37,12 @@ class Routeur {
             }
         }
         catch (Exception $e) {
-            $this->afficherErreur($e->getMessage());
+            $this->erreur($e->getMessage());
         }
     }
 
     // Affiche une erreur
-    protected function afficherErreur($msgErreur) {
+    protected function erreur($msgErreur) {
         $vue = new Vue("Erreur");
         $vue->generer(array('msgErreur' => $msgErreur));
     }
