@@ -16,7 +16,10 @@ function getBillet($idBillet) {
             . ' BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET'
             . ' where BIL_ID=?');
     $stmtBillet->execute(array($idBillet));
-    return $stmtBillet->fetch();  // Accès au premier élément résultat
+    if ($stmtBillet->rowCount() > 0)
+        return $stmtBillet->fetch();  // Accès à la première ligne de résultat
+    else
+        throw new Exception("Aucun billet ne correspond à l'identifiant '$idBillet'");
 }
 
 // Renvoie la liste des commentaires associés à un billet
