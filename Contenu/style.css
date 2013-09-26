@@ -45,3 +45,7 @@ h1 {
 #titreReponses {
     font-size : 100%;
 }
+
+#txtCommentaire {
+    width: 50%;
+}
