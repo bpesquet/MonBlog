@@ -24,24 +24,16 @@ class ControleurBillet extends Controleur
         $this->commentaire = new Commentaire();
     }
     
-    /**
-     * Affiche la liste des billets du blog 
-     */
-    public function listerBillets()
-    {
-        $billets = $this->billet->lireTout();
-        // Lien vers le détail d'un billet
-        $lienBillet = "index.php?action=afficherBillet&id=";
-        $this->genererVue('listeBillets', 
-                array('billets' => $billets, 'lienBillet' => $lienBillet));
+    public function index() {
+        
     }
-
+    
     /**
      * Affiche le détail d'un billet du blog
      * 
      * @param type $id L'identifiant du billet à afficher (entier)
      */
-    public function afficherBillet($id)
+    public function billet($id)
     {
         $billet = $this->billet->lire($id);
         $commentaires = $this->commentaire->lireListe($id);

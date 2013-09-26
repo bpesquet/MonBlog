@@ -18,7 +18,7 @@ class Routeur {
      * Méthode principale appelée par le contrôleur frontal
      * Examine la requête et exécute l'action appropriée
      */
-    public function traiterRequete() {
+    public function routerRequete() {
         try {
             $controleur = $this->creerControleur();
             $controleur->executerAction();
