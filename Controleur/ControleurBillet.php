@@ -3,7 +3,6 @@
 require_once 'Modele/Billet.php';
 require_once 'Modele/Commentaire.php';
 require_once 'Vue/Vue.php';
-
 class ControleurBillet {
 
     private $billet;
@@ -20,6 +19,11 @@ class ControleurBillet {
         $commentaires = $this->commentaire->getCommentaires($idBillet);
         $vue = new Vue("Billet");
         $vue->generer(array('billet' => $billet, 'commentaires' => $commentaires));
+    }
+
+    public function commenter($auteur, $contenu, $idBillet) {
+        $this->commentaire->ajouterCommentaire($auteur, $contenu, $idBillet);
+        $this->billet($idBillet);
     }
 
 }

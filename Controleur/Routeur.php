@@ -3,7 +3,6 @@
 require_once 'Controleur/ControleurAccueil.php';
 require_once 'Controleur/ControleurBillet.php';
 require_once 'Vue/Vue.php';
-
 class Routeur {
 
     private $ctrlAccueil;
@@ -18,16 +17,22 @@ class Routeur {
         try {
             if (isset($_GET['action'])) {
                 if ($_GET['action'] == 'billet') {
-                    if (isset($_GET['id'])) {
-                        $idBillet = intval($_GET['id']);
-                        if ($idBillet != 0) {
-                            $this->ctrlBillet->billet($idBillet);
-                        }
-                        else
-                            throw new Exception("Identifiant de billet non valide");
+                    $idBillet = intval($this->getParametre($_GET, 'id'));
+                    if ($idBillet != 0) {
+                        $this->ctrlBillet->billet($idBillet);
                     }
                     else
-                        throw new Exception("Identifiant de billet non défini");
+                        throw new Exception("Identifiant de billet non valide");
+                }
+                else
+                    throw new Exception("Action non valide");
+            }
+            else if (isset($_POST['action'])) {
+                if ($_POST['action'] == 'commenter') {
+                    $auteur = $this->getParametre($_POST, 'auteur');
+                    $contenu = $this->getParametre($_POST, 'contenu');
+                    $idBillet = $this->getParametre($_POST, 'idBillet');
+                    $this->ctrlBillet->commenter($auteur, $contenu, $idBillet);
                 }
                 else
                     throw new Exception("Action non valide");
@@ -42,9 +47,17 @@ class Routeur {
     }
 
     // Affiche une erreur
-    protected function erreur($msgErreur) {
+    private function erreur($msgErreur) {
         $vue = new Vue("Erreur");
         $vue->generer(array('msgErreur' => $msgErreur));
+    }
+
+    private function getParametre($tableau, $nom) {
+        if (isset($tableau[$nom])) {
+            return $tableau[$nom];
+        }
+        else
+            throw new Exception("Paramètre '$nom' absent");
     }
 
 }
