@@ -1,5 +1,8 @@
 <?php
 
+require_once 'Requete.php';
+require_once 'Vue.php';
+
 /**
  * Classe abstraite Controleur
  * Fournit des services communs aux classes Controleur dérivées
@@ -25,6 +28,7 @@ abstract class Controleur {
      * @throws Exception
      */
     public function executerAction() {
+        echo "action:" . $this->action;
         if (method_exists($this, $this->action)) {
             return $this->{$this->action}();
         }
@@ -39,7 +43,7 @@ abstract class Controleur {
      * Oblige les classes dérivées à implémenter cette action par défaut
      */
     public abstract function index();
-    
+
     /**
      * Génère la vue associée au contrôleur courant
      * 
