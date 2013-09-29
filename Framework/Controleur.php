@@ -2,7 +2,6 @@
 
 require_once 'Requete.php';
 require_once 'Vue.php';
-
 /**
  * Classe abstraite Controleur
  * Fournit des services communs aux classes Controleur dérivées
@@ -11,13 +10,12 @@ require_once 'Vue.php';
  */
 abstract class Controleur {
 
-    // Action à réaliser (définie par le routeur)
+    // Action à réaliser
     private $action;
     // Requête entrante
     protected $requete;
 
-    public function __construct($action, Requete $requete) {
-        $this->action = $action;
+    public function setRequete(Requete $requete) {
         $this->requete = $requete;
     }
 
@@ -27,14 +25,14 @@ abstract class Controleur {
      * @return type
      * @throws Exception
      */
-    public function executerAction() {
-        echo "action:" . $this->action;
-        if (method_exists($this, $this->action)) {
+    public function executerAction($action) {
+        if (method_exists($this, $action)) {
+            $this->action = $action;
             return $this->{$this->action}();
         }
         else {
             $classeControleur = get_class($this);
-            throw new Exception("Erreur interne : action '$this->action' non définie dans la classe $classeControleur");
+            throw new Exception("Erreur interne : action '$action' non définie dans la classe $classeControleur");
         }
     }
 

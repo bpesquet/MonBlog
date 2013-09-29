@@ -20,8 +20,15 @@ class Routeur {
      */
     public function routerRequete() {
         try {
-            $controleur = $this->creerControleur();
-            $controleur->executerAction();
+            // Grâce à la redirection, toutes les URL entrantes sont du type :
+            // index.php?controleur=XXX&action=YYY&id=ZZZ
+            // $_GET contient (même en cas de requête POST) les paramètres de l'URL
+            $requete = new Requete($_REQUEST);
+            
+            $controleur = $this->creerControleur($requete);
+            $action = $this->creerAction($requete);
+            
+            $controleur->executerAction($action);
         }
         catch (Exception $e) {
             $this->gererErreur($e);
@@ -34,14 +41,7 @@ class Routeur {
      * @return 
      * @throws Exception
      */
-    private function creerControleur() {
-        print_r($_GET);
-        
-        // Grâce à la redirection, toutes les URL entrantes sont du type :
-        // index.php?controleur=XXX&action=YYY&id=ZZZ
-        // $_GET contient (même en cas de requête POST) les paramètres de l'URL
-        $requete = new Requete($_GET);
-
+    private function creerControleur(Requete $requete) {
         $controleur = "Accueil";  // Contrôleur par défaut
         if ($requete->existeParametre('controleur')) {
             $controleur = $requete->getParametre('controleur');
@@ -50,17 +50,23 @@ class Routeur {
         $classeControleur = "Controleur" . $controleur;
         $fichierControleur = "Controleur/" . $classeControleur . ".php";
         if (file_exists($fichierControleur)) {
-            $action = "index";  // Action par défaut
-            if ($requete->existeParametre('action')) {
-                $action = $requete->getParametre('action');
-            }
             // Instanciation du contrôleur adapté à la requête
             require($fichierControleur);
-            return new $classeControleur($action, $requete);
+            $controleur = new $classeControleur();
+            $controleur->setRequete($requete);
+            return $controleur;
         }
         else {
             throw new Exception("Erreur interne : fichier '$fichierControleur' introuvable");
         }
+    }
+
+    private function creerAction(Requete $requete) {
+        $action = "index";  // Action par défaut
+        if ($requete->existeParametre('action')) {
+            $action = $requete->getParametre('action');
+        }
+        return $action;
     }
 
     /**

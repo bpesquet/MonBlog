@@ -1,14 +1,13 @@
 <?php
 
-require_once 'Modele/Billet.php';
 require_once 'Framework/Controleur.php';
+require_once 'Modele/Billet.php';
 
 class ControleurAccueil extends Controleur {
 
     private $billet;
 
-    public function __construct($action, Requete $requete) {
-        parent::__construct($action, $requete);
+    public function __construct() {
         $this->billet = new Billet();
     }
 

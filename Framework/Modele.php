@@ -20,15 +20,15 @@ abstract class Modele {
      * @param type $valeurs
      * @return type
      */
-    protected function executerRequete($sql, $valeurs = null) {
-        if ($valeurs == null) {
-            $stmtResultats = self::getBdd()->query($sql);
+    protected function executerRequete($sql, $params = null) {
+        if ($params == null) {
+            $resultat = self::getBdd()->query($sql);   // exécution directe
         }
         else {
-            $stmtResultats = self::getBdd()->prepare($sql);
-            $stmtResultats->execute($valeurs);
+            $resultat = self::getBdd()->prepare($sql); // requête préparée
+            $resultat->execute($params);
         }
-        return $stmtResultats;
+        return $resultat;
     }
 
     /**
@@ -43,7 +43,8 @@ abstract class Modele {
             $login = Configuration::get("login");
             $mdp = Configuration::get("mdp");
             // Création de la connexion
-            self::$bdd = new PDO($dsn, $login, $mdp, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            self::$bdd = new PDO($dsn, $login, $mdp, 
+                    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         return self::$bdd;
     }

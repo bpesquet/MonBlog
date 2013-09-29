@@ -4,7 +4,7 @@
     ?>
     <article>
         <header>
-            <a href="<?= "Billet/index/" . $billet['id'] ?>">
+            <a href="<?= "billet/index/" . $billet['id'] ?>">
                 <h1 class="titreBillet"><?= $billet['titre'] ?></h1>
             </a>
             <time><?= $billet['date'] ?></time>
