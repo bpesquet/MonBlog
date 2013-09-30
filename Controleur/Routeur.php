@@ -48,6 +48,7 @@ class Routeur {
         $vue->generer(array('msgErreur' => $msgErreur));
     }
 
+    // Recherche un paramètre dans un tableau
     private function getParametre($tableau, $nom) {
         if (isset($tableau[$nom])) {
             return $tableau[$nom];
