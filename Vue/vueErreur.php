@@ -1,1 +1,3 @@
-<p>Une erreur est survenue : <?= $msgErreur ?></p>
+<?php $this->titre = "Mon Blog - Erreur !"; ?>
+
+<p><?= $msgErreur ?></p>

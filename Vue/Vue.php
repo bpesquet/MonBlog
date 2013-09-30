@@ -13,6 +13,7 @@ class Vue {
         $this->fichier = "Vue/vue" . $action . ".php";
     }
 
+    // Génère et affiche la vue
     public function generer($donnees) {
         // Génération de la partie spécifique de la vue
         $contenu = $this->genererFichier($this->fichier, $donnees);
@@ -23,6 +24,7 @@ class Vue {
         echo $vue;
     }
 
+    // Génère un fichier vue et renvoie le résultat produit
     private function genererFichier($fichier, $donnees) {
         if (file_exists($fichier)) {
             // Rend les éléments du tableau $donnees accessibles dans la vue
@@ -36,7 +38,7 @@ class Vue {
             return ob_get_clean();
         }
         else {
-            throw new Exception("Erreur interne : fichier '$fichier' introuvable");
+            throw new Exception("Fichier '$fichier' introuvable");
         }
     }
 
