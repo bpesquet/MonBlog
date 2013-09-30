@@ -16,7 +16,7 @@ function getBillet($idBillet) {
             . ' BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET'
             . ' where BIL_ID=?');
     $billet->execute(array($idBillet));
-    if ($billet->rowCount() > 0)
+    if ($billet->rowCount() == 1)
         return $billet->fetch();  // Accès à la première ligne de résultat
     else
         throw new Exception("Aucun billet ne correspond à l'identifiant '$idBillet'");
