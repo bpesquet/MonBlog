@@ -13,6 +13,7 @@ class Routeur {
         $this->ctrlBillet = new ControleurBillet();
     }
 
+    // Route une requête entrante : exécution l'action associée
     public function routerRequete() {
         try {
             if (isset($_GET['action'])) {
