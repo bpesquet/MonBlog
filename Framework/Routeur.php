@@ -20,14 +20,12 @@ class Routeur {
      */
     public function routerRequete() {
         try {
-            // Grâce à la redirection, toutes les URL entrantes sont du type :
-            // index.php?controleur=XXX&action=YYY&id=ZZZ
-            // $_GET contient (même en cas de requête POST) les paramètres de l'URL
-            $requete = new Requete($_REQUEST);
-            
+            // Fusion des paramètres GET et POST de la requête
+            $requete = new Requete(array_merge($_GET, $_POST));
+
             $controleur = $this->creerControleur($requete);
             $action = $this->creerAction($requete);
-            
+
             $controleur->executerAction($action);
         }
         catch (Exception $e) {
@@ -42,9 +40,14 @@ class Routeur {
      * @throws Exception
      */
     private function creerControleur(Requete $requete) {
+        // Grâce à la redirection, toutes les URL entrantes sont du type :
+        // index.php?controleur=XXX&action=YYY&id=ZZZ
+
         $controleur = "Accueil";  // Contrôleur par défaut
         if ($requete->existeParametre('controleur')) {
             $controleur = $requete->getParametre('controleur');
+            // Première lettre en majuscules
+            $controleur = ucfirst(strtolower($controleur));
         }
         // Création du nom du fichier du contrôleur
         $classeControleur = "Controleur" . $controleur;
@@ -57,10 +60,11 @@ class Routeur {
             return $controleur;
         }
         else {
-            throw new Exception("Erreur interne : fichier '$fichierControleur' introuvable");
+            throw new Exception("Fichier '$fichierControleur' introuvable");
         }
     }
 
+    // Détermine l'action à exécuter en fonction de la requête reçue
     private function creerAction(Requete $requete) {
         $action = "index";  // Action par défaut
         if ($requete->existeParametre('action')) {
