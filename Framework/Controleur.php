@@ -2,6 +2,7 @@
 
 require_once 'Requete.php';
 require_once 'Vue.php';
+
 /**
  * Classe abstraite Controleur
  * Fournit des services communs aux classes Controleur dérivées
@@ -15,7 +16,8 @@ abstract class Controleur {
     // Requête entrante
     protected $requete;
 
-    public function setRequete(Requete $requete) {
+    public function setRequete(Requete $requete)
+    {
         $this->requete = $requete;
     }
 
@@ -25,14 +27,15 @@ abstract class Controleur {
      * @return type
      * @throws Exception
      */
-    public function executerAction($action) {
+    public function executerAction($action)
+    {
         if (method_exists($this, $action)) {
             $this->action = $action;
-            return $this->{$this->action}();
+            $this->{$this->action}();
         }
         else {
             $classeControleur = get_class($this);
-            throw new Exception("Erreur interne : action '$action' non définie dans la classe $classeControleur");
+            throw new Exception("Action '$action' non définie dans la classe $classeControleur");
         }
     }
 
@@ -47,11 +50,12 @@ abstract class Controleur {
      * 
      * @param type $donneesVue les éventuels données utilisées par la vue
      */
-    protected function genererVue($donneesVue = array()) {
+    protected function genererVue($donneesVue = array())
+    {
         // Détermination du nom du fichier vue à partir du nom du contrôleur actuel
         $classeControleur = get_class($this);
         $controleur = str_replace("Controleur", "", $classeControleur);
-
+        // Instanciation et génération de la vueF
         $vue = new Vue($this->action, $controleur);
         $vue->generer($donneesVue);
     }
