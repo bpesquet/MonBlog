@@ -1,4 +1,4 @@
-<?php $this->titre = "Mon Blog - " . $billet['titre']; ?>
+<?php $this->titre = "Mon Blog - " . $this->nettoyer($billet['titre']); ?>
 
 <article>
     <header>
