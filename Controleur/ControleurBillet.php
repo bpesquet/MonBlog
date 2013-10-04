@@ -21,6 +21,7 @@ class ControleurBillet extends Controleur {
         $this->commentaire = new Commentaire();
     }
 
+    // Affiche les détails sur un billet
     public function index() {
         $idBillet = $this->requete->getParametre("id");
         
@@ -30,6 +31,7 @@ class ControleurBillet extends Controleur {
         $this->genererVue(array('billet' => $billet, 'commentaires' => $commentaires));
     }
 
+    // Ajoute un commentaire sur un billet
     public function commenter() {
         $idBillet = $this->requete->getParametre("id");
         $auteur = $this->requete->getParametre("auteur");
@@ -37,6 +39,7 @@ class ControleurBillet extends Controleur {
         
         $this->commentaire->ajouterCommentaire($auteur, $contenu, $idBillet);
         
+        // Exécution de l'action par défaut pour réafficher la liste des billets
         $this->executerAction("index");
     }
 }

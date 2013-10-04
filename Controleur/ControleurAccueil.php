@@ -11,7 +11,7 @@ class ControleurAccueil extends Controleur {
         $this->billet = new Billet();
     }
 
-// Affiche la liste de tous les billets du blog
+    // Affiche la liste de tous les billets du blog
     public function index() {
         $billets = $this->billet->getBillets();
         $this->genererVue(array('billets' => $billets));
