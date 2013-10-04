@@ -2,18 +2,18 @@
 
 <article>
     <header>
-        <h1 class="titreBillet"><?= $billet['titre'] ?></h1>
-        <time><?= $billet['date'] ?></time>
+        <h1 class="titreBillet"><?= $this->nettoyer($billet['titre']) ?></h1>
+        <time><?= $this->nettoyer($billet['date']) ?></time>
     </header>
-    <p><?= $billet['contenu'] ?></p>
+    <p><?= $this->nettoyer($billet['contenu']) ?></p>
 </article>
 <hr />
 <header>
-    <h1 id="titreReponses">Réponses à <?= $billet['titre'] ?></h1>
+    <h1 id="titreReponses">Réponses à <?= $this->nettoyer($billet['titre']) ?></h1>
 </header>
 <?php foreach ($commentaires as $commentaire): ?>
-    <p><?= $commentaire['auteur'] ?> dit :</p>
-    <p><?= $commentaire['contenu'] ?></p>
+    <p><?= $this->nettoyer($commentaire['auteur']) ?> dit :</p>
+    <p><?= $this->nettoyer($commentaire['contenu']) ?></p>
 <?php endforeach; ?>
 <hr />
 <form method="post" action="billet/commenter">

@@ -4,12 +4,12 @@
     ?>
     <article>
         <header>
-            <a href="<?= "billet/index/" . $billet['id'] ?>">
-                <h1 class="titreBillet"><?= $billet['titre'] ?></h1>
+            <a href="<?= "billet/index/" . $this->nettoyer($billet['id']) ?>">
+                <h1 class="titreBillet"><?= $this->nettoyer($billet['titre']) ?></h1>
             </a>
-            <time><?= $billet['date'] ?></time>
+            <time><?= $this->nettoyer($billet['date']) ?></time>
         </header>
-        <p><?= $billet['contenu'] ?></p>
+        <p><?= $this->nettoyer($billet['contenu']) ?></p>
     </article>
     <hr />
 <?php endforeach; ?>
