@@ -10,6 +10,7 @@ require_once 'Vue.php';
  * Inspirée du framework PHP de Nathan Davison
  * (https://github.com/ndavison/Nathan-MVC)
  * 
+ * @version 1.0
  * @author Baptiste Pesquet
  */
 class Routeur {
@@ -21,6 +22,7 @@ class Routeur {
     public function routerRequete() {
         try {
             // Fusion des paramètres GET et POST de la requête
+            // Permet de gérer uniformément ces deux types de requête HTTP
             $requete = new Requete(array_merge($_GET, $_POST));
 
             $controleur = $this->creerControleur($requete);
@@ -34,10 +36,11 @@ class Routeur {
     }
 
     /**
-     * Crée le contrôleur approprié en fonction de la requête reçue
+     * Instancie le contrôleur approprié en fonction de la requête reçue
      * 
-     * @return 
-     * @throws Exception
+     * @param Requete $requete Requête reçue
+     * @return Instance d'un contrôleur
+     * @throws Exception Si la création du contrôleur échoue
      */
     private function creerControleur(Requete $requete) {
         // Grâce à la redirection, toutes les URL entrantes sont du type :
@@ -50,6 +53,7 @@ class Routeur {
             $controleur = ucfirst(strtolower($controleur));
         }
         // Création du nom du fichier du contrôleur
+        // La convention de nommage des fichiers controleurs est : Controleur/Controleur<$controleur>.php
         $classeControleur = "Controleur" . $controleur;
         $fichierControleur = "Controleur/" . $classeControleur . ".php";
         if (file_exists($fichierControleur)) {
@@ -64,7 +68,12 @@ class Routeur {
         }
     }
 
-    // Détermine l'action à exécuter en fonction de la requête reçue
+    /**
+     * Détermine l'action à exécuter en fonction de la requête reçue
+     * 
+     * @param Requete $requete Requête reçue
+     * @return string Action à exécuter
+     */
     private function creerAction(Requete $requete) {
         $action = "index";  // Action par défaut
         if ($requete->existeParametre('action')) {
@@ -76,7 +85,7 @@ class Routeur {
     /**
      * Gère une erreur d'exécution (exception)
      * 
-     * @param type $exception L'exception qui s'est produite
+     * @param Exception $exception Exception qui s'est produite
      */
     private function gererErreur(Exception $exception) {
         $vue = new Vue('erreur');
