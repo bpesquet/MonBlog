@@ -8,5 +8,5 @@ Auteur : [Baptiste Pesquet](https://github.com/bpesquet)
 ## Description
 
 * Cette version initiale n'emploie pas l'architecture MVC.
-* [Démonstration en ligne] (http://monblog.bpesquet.fr/sans-mvc/)
+* Les autres versions sont disponibles sur les différentes branches du dépôt
 
