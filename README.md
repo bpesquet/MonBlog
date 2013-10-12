@@ -7,5 +7,6 @@ Auteur : [Baptiste Pesquet](https://github.com/bpesquet)
 
 ## Description
 
-* Cette version finale utilise une architecture MVC orientée objet avec un contrôleur frontal.
+* Cette version finale utilise un framework MVC.
+* Les autres versions sont disponibles sur les différentes branches du dépôt
 * [Démonstration en ligne] (http://monblog.bpesquet.fr/)
