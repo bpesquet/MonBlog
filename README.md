@@ -8,5 +8,5 @@ Auteur : [Baptiste Pesquet](https://github.com/bpesquet)
 ## Description
 
 * Cette version emploie une architecture MVC procédurale avec un contrôleur frontal.
-* [Démonstration en ligne] (http://monblog.bpesquet.fr/mvc-procedural/)
+* Les autres versions sont disponibles sur les différentes branches du dépôt.
 
