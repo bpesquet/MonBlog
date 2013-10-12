@@ -8,5 +8,5 @@ Auteur : [Baptiste Pesquet](https://github.com/bpesquet)
 ## Description
 
 * Cette version emploie une architecture MVC simple, sans contrôleur frontal ni organisation des fichiers sources.
-* [Démonstration en ligne] (http://monblog.bpesquet.fr/mvc-simple/)
+* Les autres versions sont disponibles sur les différentes branches du dépôt.
 
