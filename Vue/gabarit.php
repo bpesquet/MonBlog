@@ -9,7 +9,7 @@
     <body>
         <div id="global">
             <header>
-                <a href="index.php"><h1 id="titreBlog">Mon Blog</h1></a>
+                <a href=""><h1 id="titreBlog">Mon Blog</h1></a>
                 <p>Je vous souhaite la bienvenue sur ce modeste blog.</p>
             </header>
             <div id="contenu">

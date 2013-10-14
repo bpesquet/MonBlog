@@ -12,7 +12,7 @@ class Vue {
 
     /** Nom du fichier associé à la vue */
     private $fichier;
-    
+
     /** Titre de la vue (défini dans le fichier vue) */
     private $titre;
 
@@ -40,9 +40,14 @@ class Vue {
     public function generer($donnees) {
         // Génération de la partie spécifique de la vue
         $contenu = $this->genererFichier($this->fichier, $donnees);
+        // On définit une variable locale accessible par la vue pour la racine Web
+        // Il s'agit du chemin vers le site sur le serveur Web
+        // Nécessaire pour les URI de type controleur/action/id
+        $racineWeb = Configuration::get("racineWeb", "/");
         // Génération du gabarit commun utilisant la partie spécifique
         $vue = $this->genererFichier('Vue/gabarit.php',
-                array('titre' => $this->titre, 'contenu' => $contenu));
+                array('titre' => $this->titre, 'contenu' => $contenu,
+                    'racineWeb' => $racineWeb));
         // Renvoi de la vue générée au navigateur
         echo $vue;
     }
@@ -59,10 +64,6 @@ class Vue {
         if (file_exists($fichier)) {
             // Rend les éléments du tableau $donnees accessibles dans la vue
             extract($donnees);
-            // On définit une variable locale accessible par la vue pour la racine Web
-            // Il s'agit du chemin vers le site sur le serveur Web
-            // Nécessaire pour les URI de type controleur/action/id
-            $racineWeb = Configuration::get("racineWeb");
             // Démarrage de la temporisation de sortie
             ob_start();
             // Inclut le fichier vue
@@ -75,7 +76,7 @@ class Vue {
             throw new Exception("Fichier '$fichier' introuvable");
         }
     }
-    
+
     /**
      * Nettoie une valeur insérée dans une page HTML
      * Permet d'éviter les problèmes d'exécution de code indésirable (XSS) dans les vues générées
@@ -86,4 +87,5 @@ class Vue {
     private function nettoyer($valeur) {
         return htmlspecialchars($valeur, ENT_QUOTES, 'UTF-8', false);
     }
+
 }
