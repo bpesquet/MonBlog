@@ -4,22 +4,22 @@ require_once 'Controleur.php';
 require_once 'Requete.php';
 require_once 'Vue.php';
 
-/*
+/**
  * Classe de routage des requêtes entrantes.
- * 
  * Inspirée du framework PHP de Nathan Davison
  * (https://github.com/ndavison/Nathan-MVC)
  * 
- * @version 1.0
  * @author Baptiste Pesquet
  */
-class Routeur {
+class Routeur
+{
 
     /**
      * Méthode principale appelée par le contrôleur frontal
      * Examine la requête et exécute l'action appropriée
      */
-    public function routerRequete() {
+    public function routerRequete()
+    {
         try {
             // Fusion des paramètres GET et POST de la requête
             // Permet de gérer uniformément ces deux types de requête HTTP
@@ -42,7 +42,8 @@ class Routeur {
      * @return Instance d'un contrôleur
      * @throws Exception Si la création du contrôleur échoue
      */
-    private function creerControleur(Requete $requete) {
+    private function creerControleur(Requete $requete)
+    {
         // Grâce à la redirection, toutes les URL entrantes sont du type :
         // index.php?controleur=XXX&action=YYY&id=ZZZ
 
@@ -74,7 +75,8 @@ class Routeur {
      * @param Requete $requete Requête reçue
      * @return string Action à exécuter
      */
-    private function creerAction(Requete $requete) {
+    private function creerAction(Requete $requete)
+    {
         $action = "index";  // Action par défaut
         if ($requete->existeParametre('action')) {
             $action = $requete->getParametre('action');
@@ -87,7 +89,8 @@ class Routeur {
      * 
      * @param Exception $exception Exception qui s'est produite
      */
-    private function gererErreur(Exception $exception) {
+    private function gererErreur(Exception $exception)
+    {
         $vue = new Vue('erreur');
         $vue->generer(array('msgErreur' => $exception->getMessage()));
     }
