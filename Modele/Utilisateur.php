@@ -7,7 +7,7 @@ require_once 'Framework/Modele.php';
  *
  * @author Baptiste Pesquet
  */
-class Utilisateur {
+class Utilisateur extends Modele {
 
     public function connecter($login, $mdp)
     {
@@ -24,7 +24,7 @@ class Utilisateur {
         if ($utilisateur->rowCount() == 1)
             return $utilisateur->fetch();  // Accès à la première ligne de résultat
         else
-            throw new Exception("Aucun visiteur ne correspond aux identifiants fournis");
+            throw new Exception("Aucun utilisateur ne correspond aux identifiants fournis");
     }
 
 }

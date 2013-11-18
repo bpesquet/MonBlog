@@ -38,4 +38,11 @@ class Billet extends Modele {
             throw new Exception("Aucun billet ne correspond à l'identifiant '$idBillet'");
     }
 
+    public function getNombreBillets()
+    {
+        $sql = 'select count(*) as nbBillets from T_BILLET';
+        $resultat = $this->executerRequete($sql);
+        $ligne = $resultat->fetch();  // Le résultat comporte toujours 1 ligne
+        return $ligne['nbBillets'];
+    }
 }
