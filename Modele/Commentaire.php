@@ -25,6 +25,11 @@ class Commentaire extends Modele {
         $this->executerRequete($sql, array($date, $auteur, $contenu, $idBillet));
     }
     
+    /**
+     * Renvoie le nombre total de commentaires
+     * 
+     * @return int Le nombre de commentaires
+     */
     public function getNombreCommentaires()
     {
         $sql = 'select count(*) as nbCommentaires from T_COMMENTAIRE';
