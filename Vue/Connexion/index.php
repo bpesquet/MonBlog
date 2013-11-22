@@ -7,3 +7,7 @@
     <input name="mdp" type="password" placeholder="Entrez votre mot de passe" required>
     <button type="submit">Connexion</button>
 </form>
+
+<?php if (isset($msgErreur)): ?>
+    <p><?= $msgErreur ?></p>
+<?php endif; ?>
