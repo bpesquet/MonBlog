@@ -9,4 +9,4 @@ Auteur : [Baptiste Pesquet](https://github.com/bpesquet)
 
 * Cette version finale utilise un framework MVC.
 * Les autres versions sont disponibles sur les différentes branches du dépôt.
-* [Démonstration en ligne] (http://monblog.bpesquet.fr/) (l'ajout de commentaires est désactivé)
+
