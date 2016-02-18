@@ -7,6 +7,7 @@ Auteur : [Baptiste Pesquet](https://github.com/bpesquet)
 
 ## Description
 
-* Cette version finale utilise un framework MVC.
+* Cette version ajoute la gestion de l'authentification des visiteurs.
+* Le cours associé est disponible au [format PDF](authentification_web_php.pdf)
 * Les autres versions sont disponibles sur les différentes branches du dépôt.
-* [Démonstration en ligne] (http://monblog.bpesquet.fr/) (l'ajout de commentaires est désactivé)
+
